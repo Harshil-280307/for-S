@@ -1,0 +1,272 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Friendship Day 💥</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      background-image: url('https://i.pinimg.com/originals/ea/59/51/ea5951c9f9f7f66d7c47c88d1e07eae2.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #000;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 2.8em;
+      background: linear-gradient(to right, #ff69b4, #ff1493);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+      animation: jump 1s ease-in-out infinite alternate;
+    }
+    h2 {
+      font-size: 1.2em;
+      color: #333;
+      margin-bottom: 25px;
+    }
+    .btn {
+      padding: 14px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.3s;
+      box-shadow: 0 0 12px #aaa;
+      background: #ffb6c1;
+      color: #000;
+    }
+    .btn:hover {
+      transform: scale(1.1) rotate(2deg);
+      background: #ff69b4;
+      color: #fff;
+    }
+
+    #line-box {
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(to right, #ffe0f0, #d1faff);
+      width: 70%;
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #ff1493;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      animation: popBox 0.7s ease forwards;
+      display: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes popBox {
+      0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    #line-box.animate { display: block; }
+
+    @keyframes jump {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 12px;
+      height: 12px;
+      background: #ff69b4;
+      opacity: 0.8;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    #truth-game {
+      margin-top: 40px;
+      padding: 20px;
+      border-top: 2px dashed #ccc;
+    }
+
+    #bomb {
+      width: 70px;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    #nameBox {
+      font-weight: bold;
+      font-size: 1.3em;
+      background: #fff6;
+      padding: 8px 20px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 20px;
+      backdrop-filter: blur(3px);
+    }
+
+    #surpriseBox {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      width: 80%;
+      margin: 40px auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: none;
+      animation: popBox 1s ease-in-out forwards;
+      color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy Friendship Day 🎉</h1>
+
+  <!-- 🔹 Friend Name Box -->
+  <div id="nameBox">You’re the friend who became my diary, my therapist, and my biggest cheerleader. I’m so lucky to have you. <span id="friend-name">You 😄</span></div>
+
+  <h2>Let’s celebrate your craziness, sweetness & total weirdness 💥</h2>
+
+  <button class="btn" onclick="showLine('funny')">😂 Funny Line</button>
+  <button class="btn" onclick="showLine('roast')">🔥 Roast Line</button>
+  <button class="btn" onclick="showLine('flirty')">😉 Flirty Line</button>
+  <button class="btn" onclick="launchConfetti()">🎊 Surprise Me</button>
+
+  <div id="line-box"><span id="output"></span></div>
+
+  <div id="truth-game">
+    <h2>💣 Truth Bomb Mini-Game</h2>
+    <img src="https://cdn-icons-png.flaticon.com/512/685/685815.png" id="bomb" alt="bomb" />
+    <br><br>
+    <button class="btn" onclick="throwTruthBomb()">Throw a Truth Bomb</button>
+    <p id="truth-output"></p>
+  </div>
+
+  <!-- 🎁 Timer-Based Surprise Box -->
+  <div id="surpriseBox">🎁 Surprise! You’re not just a friend... You’re a whole vibe 😎</div>
+
+  <div class="footer">~ Made with madness, by your friend HARSHIL just to make you smile 😜</div>
+
+  <!-- 🔊 Custom Google Drive Song -->
+  <!-- 🔽 Replace FILE_ID below with your actual Google Drive file ID -->
+<!--   <audio autoplay loop hidden>
+    <source src="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio> -->
+
+  <script>
+    // 🔹 Set your friend's name here
+    const friendName = "SUHANA"; // <--- ✏️ Change this
+    document.getElementById("friend-name").innerText = friendName;
+
+    const funnyLines = [
+      "You laugh like a goat and I still love you 🐐🤣",
+      "You're the reason friendship needs a warning label ⚠️",
+      "You're not crazy. You're just creatively insane 😜",
+      "If weirdness was a competition, you’d be my trophy 🏆",
+      "You're my unpaid therapist with zero skills 😅",
+      "You're like Wi-Fi... sometimes strong, mostly useless 📶",
+      "Our conversations could get us arrested 😂",
+      "You're a human emoji with a glitch 🤖"
+    ];
+
+    const roastLines = [
+      "You're not ugly… just creatively challenged 💀",
+      "You bring chaos wherever you go – it's your gift 🎁🔥",
+      "You're like a software update — unnecessary and annoying 😆",
+      "If laziness was a sport, you’d win gold... lying down 🛌",
+      "You don't need an umbrella, your ego already blocks the rain ☂️",
+      "You shine… like a broken bulb 💡",
+      "You're the bug in my life's code 🐛",
+      "You're not bad, you're just... not great either 👀"
+    ];
+
+    const flirtyLines = [
+      "You're like a magnet... always pulling my attention 😍",
+      "If you were a song, you'd be on repeat in my heart 🎶",
+      "You're the reason my cheeks hurt — from smiling 🥹",
+      "You make my heart race like it saw exam results 😳",
+      "Stop being so cute... I’m trying to ignore you 😤❤️",
+      "You’re sweet, smart, and annoying... my type exactly 😏",
+      "If I had a rupee for every time you made me blush... I'd buy your heart 💸",
+      "Your smile is my new wallpaper 😋"
+    ];
+
+    const truthBombs = [
+      "Tell me a moment you regret... instantly 🫣",
+      "What's a compliment you once faked? 🙊",
+      "Ever fell for a friend? Who? 👁️👁️",
+      "If your thoughts were a meme, what would it say now? 😅",
+      "What’s the pettiest thing you've ever done? 💅",
+      "What was your wildest crush in school days? 🎒",
+      "Name someone you still stalk 👻"
+    ];
+
+    function showLine(type) {
+      const box = document.getElementById('output');
+      const lineBox = document.getElementById('line-box');
+      const list = type === 'funny' ? funnyLines :
+                   type === 'roast' ? roastLines : flirtyLines;
+      box.innerText = list[Math.floor(Math.random() * list.length)];
+      lineBox.classList.remove('animate');
+      void lineBox.offsetWidth;
+      lineBox.classList.add('animate');
+    }
+
+    function throwTruthBomb() {
+      const bomb = document.getElementById("truth-output");
+      bomb.innerText = truthBombs[Math.floor(Math.random() * truthBombs.length)];
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 40; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = getRandomColor();
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+
+      const box = document.getElementById('output');
+      const lineBox = document.getElementById('line-box');
+      box.innerText = "🎉 You just got confetti-bombed, now smile like an idiot!";
+      lineBox.classList.remove('animate');
+      void lineBox.offsetWidth;
+      lineBox.classList.add('animate');
+    }
+
+    function getRandomColor() {
+      const colors = ['#ff69b4', '#ffa500', '#00ced1', '#98fb98', '#ff1493'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    // 🎁 Timer-based surprise after 15s
+    setTimeout(() => {
+      document.getElementById('surpriseBox').style.display = 'block';
+    }, 15000);
+  </script>
+
+</body>
+</html>
