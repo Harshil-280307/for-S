@@ -57,15 +57,45 @@ body { font-family: 'Poppins', sans-serif; overflow-x: hidden; background: linea
 
 /* Other sections unchanged... */
 
-  * Milestone Section */
-.milestone { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, #FFF5E1, #FFFACD); padding: 60px 20px; }
-.milestone h2 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: #FF69B4; margin-bottom: 40px; animation: bounceIn 1s ease-out; }
-.milestone-text { font-size: 1.3rem; color: #8B008B; margin: 15px 0; animation: fadeInSequential 0.5s ease-out both; text-shadow: 1px 1px 3px rgba(255,240,245,0.5); }
-.milestone-text:nth-child(3) { animation-delay: 0.3s; } .milestone-text:nth-child(4) { animation-delay: 0.6s; } .milestone-text:nth-child(5) { animation-delay: 0.9s; }
+ /* Milestone Section */
+.milestone {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #FFF5E1, #FFFACD);
+  padding: 80px 20px;
+}
+.milestone h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem; color: #FF69B4;
+  margin-bottom: 40px; animation: bounceIn 1s ease-out;
+}
+.milestone-text {
+  font-size: 1.2rem; color: #8B008B;
+  background: rgba(255,255,255,0.7);
+  padding: 15px 25px;
+  border-radius: 15px;
+  margin: 12px 0;
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  animation: fadeInSequential 0.5s ease-out both;
+}
+.milestone-text:nth-child(2) { animation-delay: 0.3s; }
+.milestone-text:nth-child(3) { animation-delay: 0.6s; }
+.milestone-text:nth-child(4) { animation-delay: 0.9s; }
+.milestone-text:nth-child(5) { animation-delay: 1.2s; }
 @keyframes fadeInSequential { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.5); } 60% { opacity:1; transform: scale(1.1);} 100% { transform: scale(1);} }
-.celebrate-btn { background: linear-gradient(45deg, #FFD700, #FFA500); color: white; border: none; padding: 15px 35px; font-size: 1.1rem; border-radius: 50px; cursor: pointer; margin-top: 30px; transition: all 0.3s ease; }
+.celebrate-btn {
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  color: white; border: none; padding: 15px 35px;
+  font-size: 1.1rem; border-radius: 50px;
+  cursor: pointer; margin-top: 40px;
+  transition: all 0.3s ease;
+}
 .celebrate-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(255,215,0,0.6); }
+
 
 /* Confetti */
 .confetti { position: absolute; width: 8px; height: 8px; background: #FFC0CB; animation: confettiFall 3s ease-out forwards; }
