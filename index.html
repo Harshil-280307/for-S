@@ -149,13 +149,12 @@ body { font-family: 'Poppins', sans-serif; overflow-x: hidden; background: linea
 </div>
 
 <!-- Main Content -->
-<div class="content" id="mainContent">
+<div id="mainContent">
   🎶 Music is Playing... Enjoy 💖
 </div>
 
 <!-- Background Music -->
-<audio id="bgMusic" src="I-Wanna-Be-Yours-Slowed-Reverb.mp3" loop></audio>
-
+<audio id="bgMusic" src="music.mp3" loop></audio>
     
     
 <!-- Landing -->
@@ -232,12 +231,14 @@ const btn = document.getElementById('startMusicBtn');
 const mainContent = document.getElementById('mainContent');
 
 btn.addEventListener('click', () => {
-    bgMusic.play().catch(err => console.log('Music play failed:', err));
-    overlay.style.display = 'none';
-    mainContent.style.display = 'flex';
-    document.body.style.overflow = 'auto';
+    bgMusic.play().then(() => {
+        overlay.style.display = 'none';
+        mainContent.style.display = 'flex';
+    }).catch(err => {
+        alert("Music file not found or blocked. Please check the filename.");
+        console.log(err);
+    });
 });
-
     
 // Smooth scroll
 function smoothScroll(target){document.querySelector(target).scrollIntoView({behavior:'smooth'});}
