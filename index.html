@@ -97,10 +97,67 @@ body { font-family: 'Poppins', sans-serif; overflow-x: hidden; background: linea
 .surprise-message.show { opacity:1; pointer-events:auto; }
 #overlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);z-index:999;opacity:0;transition:0.5s;pointer-events:none;}
 #overlay.show{opacity:1;pointer-events:auto;}
+
+ /* Overlay popup */
+  #musicOverlay {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: linear-gradient(135deg, #FFC0CB, #E6E6FA);
+    display:flex; justify-content:center; align-items:center;
+    flex-direction:column; z-index:10000; text-align:center;
+  }
+  #musicOverlay h1 { 
+    font-size:2rem; 
+    color:#FF1493; 
+    margin-bottom:20px; 
+    text-shadow:1px 1px 3px rgba(0,0,0,0.2);
+  }
+  #musicOverlay button {
+    padding: 15px 40px;
+    font-size:1.2rem;
+    border:none; border-radius:50px;
+    background: linear-gradient(45deg,#FF69B4,#FF1493);
+    color:white; cursor:pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition:0.3s;
+  }
+  #musicOverlay button:hover {
+    transform:scale(1.1);
+    background: linear-gradient(45deg,#FF1493,#FF69B4);
+  }
+
+  /* After overlay is gone */
+  .content {
+    display:none;
+    height:100vh;
+    background: linear-gradient(120deg, #FFC0CB, #E6E6FA);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2rem;
+    color:#FF1493;
+  }
+    
 </style>
 </head>
 <body>
 
+<!-- Popup overlay -->
+<div id="musicOverlay">
+  <h1>Click to Start the Music 🎵</h1>
+  <button id="startMusicBtn">Play Music</button>
+</div>
+
+<!-- Main Content -->
+<div class="content" id="mainContent">
+  🎶 Music is Playing... Enjoy 💖
+</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" src="your-music.mp3" loop></audio>
+
+    
+    
 <!-- Landing -->
 <section class="landing">
     <h1 class="main-heading">Hey Suhana! 💖</h1>
@@ -112,7 +169,6 @@ body { font-family: 'Poppins', sans-serif; overflow-x: hidden; background: linea
 
 
   
-<audio id="bgMusic" src="I-Wanna-Be-Yours-Slowed-Reverb.mp3" loop autoplay muted></audio>
 
 
 
@@ -169,6 +225,20 @@ body { font-family: 'Poppins', sans-serif; overflow-x: hidden; background: linea
 </div>
 
 <script>
+
+const bgMusic = document.getElementById('bgMusic');
+const overlay = document.getElementById('musicOverlay');
+const btn = document.getElementById('startMusicBtn');
+const mainContent = document.getElementById('mainContent');
+
+btn.addEventListener('click', () => {
+    bgMusic.play().catch(err => console.log('Music play failed:', err));
+    overlay.style.display = 'none';
+    mainContent.style.display = 'flex';
+    document.body.style.overflow = 'auto';
+});
+
+    
 // Smooth scroll
 function smoothScroll(target){document.querySelector(target).scrollIntoView({behavior:'smooth'});}
 
